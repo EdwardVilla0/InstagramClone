@@ -1,4 +1,7 @@
+import React from 'react';
 import './App.css';
+import Post from './components/post/post.component';
+
 
 function App() {
   return (
@@ -11,7 +14,7 @@ function App() {
           alt='instagram logo'
         />
       </div>
-      <h1>hello</h1>
+      <Post />
     </div>
   );
 }
