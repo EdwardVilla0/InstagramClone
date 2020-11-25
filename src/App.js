@@ -15,9 +15,11 @@ function App() {
         />
       </div>
       <h1>hello</h1>
-      <Post />
-      <Post />
-      <Post />
+      <Post
+        username='clever'
+        caption='it works'
+        imageUrl='https://mildaintrainings.com/wp-content/uploads/2017/11/react-logo.png' />
+
     </div>
   );
 }
