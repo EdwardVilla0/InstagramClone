@@ -14,6 +14,9 @@ function App() {
           alt='instagram logo'
         />
       </div>
+      <h1>hello</h1>
+      <Post />
+      <Post />
       <Post />
     </div>
   );

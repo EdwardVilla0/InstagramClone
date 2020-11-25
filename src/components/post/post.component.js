@@ -4,6 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 function Post() {
     return (
+
         <div className='post'>
             <div className='post_header'>
                 <Avatar
