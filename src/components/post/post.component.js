@@ -17,7 +17,7 @@ function Post({ username, caption, imageUrl }) {
 
             <img
                 className='post_image'
-                src='https://mildaintrainings.com/wp-content/uploads/2017/11/react-logo.png'
+                src={imageUrl}
             />
             <h4 className='post_text'><strong>username:</strong> {caption}</h4>
         </div>
