@@ -4,6 +4,7 @@ import Post from './components/post/post.component';
 import { db } from './firebase/firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import { Button } from '@material-ui/core';
 
 
 
@@ -45,6 +46,9 @@ function App() {
     })
   }, [])
 
+  const signUp = (event) => {
+
+  }
 
   return (
     <div className="app">
@@ -66,6 +70,9 @@ function App() {
           alt='instagram logo'
         />
       </div>
+
+      <Button onClick={() => setOpen(true)}>Sign Up</Button>
+
       <h1>hello</h1>
       {
         posts.map(({ id, post }) => (
