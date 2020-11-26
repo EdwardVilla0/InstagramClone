@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Post from './components/post/post.component';
+import { db } from './firebase/firebase';
 
 
 function App() {
@@ -11,6 +12,12 @@ function App() {
       imageUrl: "https://mildaintrainings.com/wp-content/uploads/2017/11/react-logo.png"
     }
   ]);
+
+  useEffect(() => {
+    db.collection('posts').onSnapshot(snapshot => {
+      setPosts(snapshot.docs.map(doc => doc.data()));
+    })
+  }, [])
 
   return (
     <div className="app">
