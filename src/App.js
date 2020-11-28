@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Post from './components/post/post.component';
-import { db } from './firebase/firebase';
+import { auth, db } from './firebase/firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { Button } from '@material-ui/core';
+import { Button, Input } from '@material-ui/core';
 
 
 
@@ -50,7 +50,11 @@ function App() {
   }, [])
 
   const signUp = (event) => {
+    event.preventDefault();
 
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message));
   }
 
   return (
@@ -61,11 +65,11 @@ function App() {
         onClose={() => setOpen(false)}
       >
         <div style={modalStyle} className={classes.paper}>
-          <form>
+          <form className="app_signup">
             <center>
               <img
                 className='app_headerImage'
-                src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/198px-Instagram_logo_2016.svg.png'
+                src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/150px-Instagram_logo.svg.png'
                 alt=''
               />
             </center>
@@ -90,7 +94,9 @@ function App() {
               value={password}
               onChange={((e) => setPassword(e.target.value))}
             />
-            <Button onClick={signUp}>sign up</Button>
+            <Button
+              type="submit"
+              onClick={signUp}>sign up</Button>
           </form>
         </div>
       </Modal>
