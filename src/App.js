@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
+  const [openSignIn, setOpenSignIn] = useState(false);
 
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
@@ -83,6 +84,16 @@ function App() {
       .catch((error) => alert(error.message));
   }
 
+  const signIn = (event) => {
+    event.preventDefault();
+
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message))
+
+    setOpenSignIn(false);
+  }
+
   return (
     <div className="app">
 
@@ -127,6 +138,40 @@ function App() {
         </div>
       </Modal>
 
+      <Modal
+        open={openSignIn}
+        onClose={() => setOpenSignIn(false)}
+      >
+        <div style={modalStyle} className={classes.paper}>
+          <form className="app_signup">
+            <center>
+              <img
+                className='app_headerImage'
+                src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/150px-Instagram_logo.svg.png'
+                alt=''
+              />
+            </center>
+
+            <input
+              placeholder="email"
+              type="email"
+              value={email}
+              onChange={((e) => setEmail(e.target.value))}
+            />
+
+            <input
+              placeholder="password"
+              type="password"
+              value={password}
+              onChange={((e) => setPassword(e.target.value))}
+            />
+            <Button
+              type="submit"
+              onClick={signIn}>Sign In</Button>
+          </form>
+        </div>
+      </Modal>
+
       <div className='app_header'>
 
         <img
@@ -138,7 +183,12 @@ function App() {
       {user ? (
         <Button onClick={() => auth.signOut()}>Logout</Button>
       ) : (
-          <Button onClick={() => setOpen(true)}>Sign Up</Button>
+          <div className="app_loginContainer">
+            <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+
+            <Button onClick={() => setOpen(true)}>Sign Up</Button>
+          </div>
+
         )}
 
       <h1>hello</h1>
