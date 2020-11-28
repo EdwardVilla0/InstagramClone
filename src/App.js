@@ -36,6 +36,9 @@ function App() {
 
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     db.collection('posts').onSnapshot(snapshot => {
@@ -58,7 +61,37 @@ function App() {
         onClose={() => setOpen(false)}
       >
         <div style={modalStyle} className={classes.paper}>
-          <h2>i am a modal</h2>
+          <form>
+            <center>
+              <img
+                className='app_headerImage'
+                src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/198px-Instagram_logo_2016.svg.png'
+                alt=''
+              />
+            </center>
+
+            <input
+              placeholder="username"
+              type="text"
+              value={username}
+              onChange={((e) => setUsername(e.target.value))}
+            />
+
+            <input
+              placeholder="email"
+              type="email"
+              value={email}
+              onChange={((e) => setEmail(e.target.value))}
+            />
+
+            <input
+              placeholder="password"
+              type="password"
+              value={password}
+              onChange={((e) => setPassword(e.target.value))}
+            />
+            <Button onClick={signUp}>sign up</Button>
+          </form>
         </div>
       </Modal>
 
