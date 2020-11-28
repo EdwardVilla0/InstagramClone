@@ -135,8 +135,11 @@ function App() {
           alt='instagram logo'
         />
       </div>
-
-      <Button onClick={() => setOpen(true)}>Sign Up</Button>
+      {user ? (
+        <Button onClick={() => auth.signOut()}>Logout</Button>
+      ) : (
+          <Button onClick={() => setOpen(true)}>Sign Up</Button>
+        )}
 
       <h1>hello</h1>
       {
