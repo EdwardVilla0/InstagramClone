@@ -39,6 +39,34 @@ function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        //user has logged in
+        console.log(authUser);
+        setUser(authUser);
+
+        if (authUser.displayName) {
+          // dont update username
+        } else {
+          // if we just create someone
+          return authUser.updateProfile({
+            displayName: username,
+          });
+        }
+      } else {
+        // user has logged out
+        setUser(null);
+      }
+    })
+
+    return () => {
+      //perform some cleanup actions
+      unsubscribe();
+    }
+  }, [user, username]);
 
   useEffect(() => {
     db.collection('posts').onSnapshot(snapshot => {
