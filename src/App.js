@@ -97,8 +97,13 @@ function App() {
 
   return (
     <div className="app">
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
+      ) : (
+          <h3>sorry you need to login to upload</h3>
+        )}
 
-      <ImageUpload />
+
 
       <Modal
         open={open}
@@ -114,21 +119,21 @@ function App() {
               />
             </center>
 
-            <input
+            <Input
               placeholder="username"
               type="text"
               value={username}
               onChange={((e) => setUsername(e.target.value))}
             />
 
-            <input
+            <Input
               placeholder="email"
               type="email"
               value={email}
               onChange={((e) => setEmail(e.target.value))}
             />
 
-            <input
+            <Input
               placeholder="password"
               type="password"
               value={password}
