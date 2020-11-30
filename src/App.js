@@ -180,17 +180,18 @@ function App() {
           src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/150px-Instagram_logo.svg.png'
           alt='instagram logo'
         />
+        {user ? (
+          <Button onClick={() => auth.signOut()}>Logout</Button>
+        ) : (
+            <div className="app_loginContainer">
+              <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+
+              <Button onClick={() => setOpen(true)}>Sign Up</Button>
+            </div>
+
+          )}
       </div>
-      {user ? (
-        <Button onClick={() => auth.signOut()}>Logout</Button>
-      ) : (
-          <div className="app_loginContainer">
-            <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
 
-            <Button onClick={() => setOpen(true)}>Sign Up</Button>
-          </div>
-
-        )}
 
       <h1>hello</h1>
       {
