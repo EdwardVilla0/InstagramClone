@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button, Input } from '@material-ui/core';
 import ImageUpload from './components/image-upload/ImageUpload.component';
+import InstagramEmbed from 'react-instagram-embed';
 
 
 
@@ -192,13 +193,33 @@ function App() {
           )}
       </div>
 
+      <div className="app_posts">
+        <div className='app_postsLeft'>
+          {
+            posts.map(({ id, post }) => (
+              <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
+            ))
+          }
+        </div>
+        <div className="app_postsRight">
+          <InstagramEmbed
+            url='https://www.instagram.com/p/B_uf9dmAGPw/'
+            maxWidth={320}
+            hideCaption={false}
+            containerTagName='div'
+            protocol=''
+            injectScript
+            onLoading={() => { }}
+            onSuccess={() => { }}
+            onAfterRender={() => { }}
+            onFailure={() => { }}
+          />
+        </div>
 
-      <h1>hello</h1>
-      {
-        posts.map(({ id, post }) => (
-          <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
-        ))
-      }
+      </div>
+
+
+
 
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
