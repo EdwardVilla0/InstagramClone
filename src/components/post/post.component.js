@@ -47,6 +47,20 @@ function Post({ postId, username, caption, imageUrl }) {
                 alt=''
             />
             <h4 className='post_text'><strong>caption:</strong> {caption}</h4>
+
+
+            <div className="post_comments">
+                {
+                    comments.map((comment) => (
+                        <p>
+                            <strong>{comment.username}</strong> {comment.text}
+                        </p>
+                    ))
+                }
+            </div>
+
+
+
             <form className="post_commentBox">
                 <input
                     className="post_input"

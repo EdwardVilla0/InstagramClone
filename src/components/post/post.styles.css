@@ -41,4 +41,12 @@
 
 .post_button{
     flex: 0;
+    border: none;
+    color: #6082a3;
+    background-color: transparent;
+    border-top: 1px solid lightgray;
+}
+
+.post_comments{
+    padding:20px;
 }
